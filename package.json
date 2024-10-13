@@ -1,0 +1,106 @@
+{
+    "name": "spirv-viewer",
+    "displayName": "SPIR-V Viewer",
+    "description": "SPIR-V Viewer is a Visual Studio Code extension that provides a read-only editor for SPIR-V binary files.",
+    "publisher": "daiyousei-qz",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.94.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "languages": [
+            {
+                "id": "spirv",
+                "extensions": [
+                    ".spirv",
+                    ".spv",
+                    ".spvasm",
+                    ".spv.txt"
+                ],
+                "aliases": [
+                    "SPIR-V",
+                    "spirv"
+                ],
+                "configuration": "./src/spirv.config.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "spirv",
+                "scopeName": "source.spirv",
+                "path": "./src/spirv.tmLanguage.json"
+            }
+        ],
+        "customEditors": [
+            {
+                "viewType": "spirv-viewer.spirvReadonlyEditor",
+                "displayName": "SPIR-V Readonly Editor",
+                "selector": [
+                    {
+                        "filenamePattern": "*.spirv"
+                    },
+                    {
+                        "filenamePattern": "*.spv"
+                    }
+                ]
+            }
+        ],
+        "configuration": {
+            "title": "SPIR-V Viewer",
+            "properties": {
+                "spirv-viewer.spirvDisPath": {
+                    "type": "string",
+                    "default": "spirv-dis",
+                    "description": "The path to the spirv-dis executable."
+                },
+                "spirv-viewer.toggleNoIndent": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Turn on --no-indent option for spirv-dis."
+                },
+                "spirv-viewer.toggleNoHeader": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Turn on --no-header option for spirv-dis."
+                },
+                "spirv-viewer.toggleRawId": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Turn on --raw-id option for spirv-dis."
+                },
+                "spirv-viewer.toggleComment": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Turn on --comment option for spirv-dis."
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "pretest": "npm run compile && npm run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/vscode": "^1.94.0",
+        "@types/glob": "^8.0.0",
+        "@types/mocha": "^10.0.0",
+        "@types/node": "16.x",
+        "@typescript-eslint/eslint-plugin": "^5.42.0",
+        "@typescript-eslint/parser": "^5.42.0",
+        "eslint": "^8.26.0",
+        "glob": "^8.0.3",
+        "mocha": "^10.1.0",
+        "typescript": "^4.8.4",
+        "@vscode/test-electron": "^2.2.0"
+    }
+}

@@ -1,0 +1,35 @@
+{
+    "scopeName": "source.spirv",
+    "patterns": [
+        {
+            "include": "#instructions"
+        }
+    ],
+    "repository": {
+        "instructions": {
+            "patterns": [
+                {
+                    "name": "keyword.control.spirv",
+                    "match": "\\b(Op\\w+)\\b"
+                },
+                {
+                    "name": "constant.numeric.spirv",
+                    "match": "\\b-?(0[Xx][0-9A-Fa-f]+|\\d+)\\b"
+                },
+                {
+                    "name": "constant.string.spirv",
+                    "begin": "\"",
+                    "end": "\""
+                },
+                {
+                    "name": "variable.parameter.spirv",
+                    "match": "\\%(\\w+)\\b"
+                },
+                {
+                    "name": "comment.line.spirv",
+                    "match": ";.*$"
+                }
+            ]
+        }
+    }
+}
