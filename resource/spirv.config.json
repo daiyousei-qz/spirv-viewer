@@ -1,0 +1,11 @@
+{
+    "comments": {
+        "lineComment": ";"
+    },
+    "folding": {
+        "markers": {
+            "start": "^\\s*//\\s*OpFunction\\b",
+            "end": "^\\s*//\\s*OpFunctionEnd\\b"
+        }
+    }
+}

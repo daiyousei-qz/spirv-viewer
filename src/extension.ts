@@ -4,24 +4,19 @@ import * as vscode from 'vscode';
 import { SpirvLanguageProvider } from './SpirvLanguageProvider';
 import { SpirvVirtualDocumentProvider } from './SpirvVirtualDocumentProvider';
 import { SpirvReadOnlyEditorProvider } from './SpirvReadOnlyEditorProvider';
+import { logInfo } from './SpirvLogProvider';
 
 
 // This method is called when your extension is activated
 // Your extension is activated the very first time the command is executed
 export async function activate(context: vscode.ExtensionContext) {
-
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "spirv-viewer" is now active!');
-
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
 	context.subscriptions.push(
 		await SpirvLanguageProvider.register(context),
 		SpirvVirtualDocumentProvider.register(context),
 		SpirvReadOnlyEditorProvider.register(context),
 	);
+
+	logInfo('The extension is activated');
 }
 
 // This method is called when your extension is deactivated

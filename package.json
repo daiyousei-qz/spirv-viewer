@@ -3,7 +3,11 @@
     "displayName": "SPIR-V Viewer",
     "description": "SPIR-V Viewer is a Visual Studio Code extension that provides a read-only editor for SPIR-V binary files.",
     "publisher": "daiyousei-qz",
-    "version": "0.0.1",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/daiyousei-qz/spirv-viewer"
+    },
+    "version": "0.0.2",
     "engines": {
         "vscode": "^1.94.0"
     },
@@ -17,6 +21,7 @@
         "languages": [
             {
                 "id": "spirv",
+                "firstLine": "; SPIR-V",
                 "extensions": [
                     ".spirv",
                     ".spv",
@@ -24,23 +29,22 @@
                     ".spv.txt"
                 ],
                 "aliases": [
-                    "SPIR-V",
-                    "spirv"
+                    "SPIR-V"
                 ],
-                "configuration": "./src/spirv.config.json"
+                "configuration": "./resource/spirv.config.json"
             }
         ],
         "grammars": [
             {
                 "language": "spirv",
                 "scopeName": "source.spirv",
-                "path": "./src/spirv.tmLanguage.json"
+                "path": "./resource/spirv.tmLanguage.json"
             }
         ],
         "customEditors": [
             {
                 "viewType": "spirv-viewer.spirvReadonlyEditor",
-                "displayName": "SPIR-V Readonly Editor",
+                "displayName": "SPIR-V Read-only Editor",
                 "selector": [
                     {
                         "filenamePattern": "*.spirv"

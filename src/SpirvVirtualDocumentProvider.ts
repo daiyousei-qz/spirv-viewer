@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { exec, spawn } from 'child_process';
 import { promisify } from 'util';
+import { logInfo } from './SpirvLogProvider';
 
 const execAsync = promisify(exec);
 
@@ -24,7 +25,7 @@ export class SpirvVirtualDocumentProvider implements vscode.TextDocumentContentP
             if (uri in this.activeFileWatchers) {
                 this.activeFileWatchers[uri].dispose();
                 delete this.activeFileWatchers[uri];
-                console.log(`Stopped watching ${uri}`);
+                logInfo(`Stopped watching ${uri}`);
             }
         }));
     }
@@ -42,7 +43,9 @@ export class SpirvVirtualDocumentProvider implements vscode.TextDocumentContentP
         const commentOption = config.get<boolean>('toggleComment', false) ? '--comment' : '';
         const spirvFile = uri.fsPath;
 
-        const result = execAsync(`${spirvDis} ${noIndentOption} ${noHeaderOption} ${rawIdOption} ${commentOption} ${spirvFile}`).then(({ stdout, stderr }) => {
+        const cmd = `${spirvDis} ${noIndentOption} ${noHeaderOption} ${rawIdOption} ${commentOption} ${spirvFile}`;
+        logInfo(`Executing ${cmd}`);
+        const result = execAsync(cmd).then(({ stdout, stderr }) => {
             if (stderr) {
                 console.error(`stderr: ${stderr}`);
             }
@@ -56,7 +59,7 @@ export class SpirvVirtualDocumentProvider implements vscode.TextDocumentContentP
             const watcher = vscode.workspace.createFileSystemWatcher(spirvFile);
             watcher.onDidChange(() => this.update(uri));
             this.activeFileWatchers[uri.toString()] = watcher;
-            console.log(`Watching ${spirvFile}`);
+            logInfo(`Watching ${spirvFile}`);
         }
 
         return result;

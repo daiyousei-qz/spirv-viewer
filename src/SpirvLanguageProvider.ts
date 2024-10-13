@@ -14,7 +14,7 @@ interface InstructionOpCodeInfo {
 
 export class SpirvLanguageProvider {
     public static async register(context: vscode.ExtensionContext): Promise<vscode.Disposable> {
-        const dataPath = context.asAbsolutePath('src/spirv.data.json');
+        const dataPath = context.asAbsolutePath('resource/spirv.data.json');
         const data: InstructionOpCodeInfo[] = await vscode.workspace.fs.readFile(vscode.Uri.file(dataPath)).then(content => JSON.parse(content.toString()));
         const opLookup: { [opname: string]: InstructionOpCodeInfo } = {};
         for (const opcodeInfo of data) {

@@ -1,5 +1,6 @@
 import * as vscode from 'vscode';
 import { SpirvVirtualDocumentProvider } from './SpirvVirtualDocumentProvider';
+import { logInfo } from './SpirvLogProvider';
 
 export class SpirvReadOnlyEditorProvider implements vscode.CustomReadonlyEditorProvider {
     public static readonly viewType = 'spirv-viewer.spirvReadonlyEditor';
@@ -16,6 +17,7 @@ export class SpirvReadOnlyEditorProvider implements vscode.CustomReadonlyEditorP
         openContext: vscode.CustomDocumentOpenContext,
         token: vscode.CancellationToken
     ): Promise<vscode.CustomDocument> {
+        logInfo(`Opening SPIR-V ${uri.toString()}`);
         return {
             uri,
             dispose: () => { }
