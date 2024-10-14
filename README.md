@@ -1,16 +1,19 @@
-# spirv-viewer README
+# SPIR-V Viewer
 
 SPIR-V Viewer is an extension that allows you to directly open a SPIR-V binary from Visual Studio Code, giving you a read-only editor and a limited set of intellisense features.
 
-<!-- ## Features
+## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+First of all, of course, you could now open and inspect a SPIR-V binary as if it's a text file! On top of that, this extension also provides you with a few quality-of-life feature including syntax highlighting and hover (the intellisense feature should only work with spirv-dis output, as this extension doesn't implement a full parser).
 
-For example if there is an image subfolder under your extension project workspace:
+### Basic Syntax Highlighting
+\!\[syntax-highlighting\]\(resrouce/syntax-highlighting.png\)
 
-\!\[feature X\]\(images/feature-x.png\)
+### OpCode Documentation on Hover
+\!\[hover-opcode-documentation\]\(resrouce/hover-opcode-documentation.png\)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow. -->
+### Operand Definition on Hover
+\!\[hover-operand-definition\]\(resrouce/hover-operand-definition.png\)
 
 ## Requirements
 
@@ -29,6 +32,7 @@ This extension contributes the following settings:
 * `spirv-viewer.toggleNoHeader`: Turn on --no-header option for spirv-dis.
 * `spirv-viewer.toggleRawId`: Turn on --raw-id option for spirv-dis.
 * `spirv-viewer.toggleComment`: Turn on --comment option for spirv-dis.
+* `spirv-viewer.enableInlayHints`: Enable exprimental inlay hints feature for instruction parameter names.
 
 ## Known Issues
 

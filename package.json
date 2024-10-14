@@ -7,7 +7,7 @@
         "type": "git",
         "url": "https://github.com/daiyousei-qz/spirv-viewer"
     },
-    "version": "0.0.2",
+    "version": "0.0.3",
     "engines": {
         "vscode": "^1.94.0"
     },
@@ -82,6 +82,11 @@
                     "type": "boolean",
                     "default": false,
                     "description": "Turn on --comment option for spirv-dis."
+                },
+                "spirv-viewer.enableInlayHints": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Enable inlay hints for SPIR-V files."
                 }
             }
         }

@@ -13,13 +13,23 @@
                     "match": "\\b(Op\\w+)\\b"
                 },
                 {
-                    "name": "constant.numeric.spirv",
+                    "name": "constant.numeric.integral.spirv",
                     "match": "\\b-?(0[Xx][0-9A-Fa-f]+|\\d+)\\b"
                 },
                 {
-                    "name": "constant.string.spirv",
+                    "name": "constant.numeric.float.spirv",
+                    "match": "\\b-?\\d*\\.\\d+([eE][-+]?\\d+)?\\b"
+                },
+                {
+                    "name": "string.quoted.double.spirv",
                     "begin": "\"",
-                    "end": "\""
+                    "end": "\"",
+                    "patterns": [
+                        {
+                            "name": "constant.character.escape.spirv",
+                            "match": "\\\\\""
+                        }
+                    ]
                 },
                 {
                     "name": "variable.parameter.spirv",

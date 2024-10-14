@@ -36,11 +36,11 @@ export class SpirvVirtualDocumentProvider implements vscode.TextDocumentContentP
 
     public provideTextDocumentContent(uri: vscode.Uri): string | Thenable<string> {
         const config = vscode.workspace.getConfiguration('spirv-viewer');
-        const spirvDis = config.get<string>('spirvDisPath', 'spirv-dis');
-        const noIndentOption = config.get<boolean>('toggleNoIndent', false) ? '--no-indent' : '';
-        const noHeaderOption = config.get<boolean>('toggleNoHeader', false) ? '--no-header' : '';
-        const rawIdOption = config.get<boolean>('toggleRawId', false) ? '--raw-id' : '';
-        const commentOption = config.get<boolean>('toggleComment', false) ? '--comment' : '';
+        const spirvDis = config.get<string>('spirvDisPath');
+        const noIndentOption = config.get<boolean>('toggleNoIndent') ? '--no-indent' : '';
+        const noHeaderOption = config.get<boolean>('toggleNoHeader') ? '--no-header' : '';
+        const rawIdOption = config.get<boolean>('toggleRawId') ? '--raw-id' : '';
+        const commentOption = config.get<boolean>('toggleComment') ? '--comment' : '';
         const spirvFile = uri.fsPath;
 
         const cmd = `${spirvDis} ${noIndentOption} ${noHeaderOption} ${rawIdOption} ${commentOption} ${spirvFile}`;
